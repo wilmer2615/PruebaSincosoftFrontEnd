@@ -1,0 +1,79 @@
+<h1>Listado de Alumnos</h1>
+<hr>
+
+<form [formGroup]="form" (ngSubmit)="saveAlumno()" class="row g-3 needs-validation" novalidate>
+    <div class="col-md-4">
+      <label for="validationCustom01" class="form-label">Nombre</label>
+      <input type="text" formControlName="nombre" class="form-control" id="validationCustom01" value="Mark" required>
+      <div class="valid-feedback">
+        Looks good!
+      </div>
+    </div>
+    <div class="col-md-4">
+      <label for="validationCustom02" class="form-label">Apellido</label>
+      <input type="text" formControlName="apellido" class="form-control" id="validationCustom02" value="Otto" required>
+      <div class="valid-feedback">
+        Looks good!
+      </div>
+    </div>  
+    <div class="col-md-4">
+        <label for="validationCustom03" class="form-label">Edad</label>
+        <input type="text" formControlName="edad" class="form-control" id="validationCustom03" value="Otto" required>
+        <div class="valid-feedback">
+          Looks good!
+        </div>
+      </div>
+    <div class="col-md-6">
+      <label for="validationCustom04" class="form-label">Direccion</label>
+      <input type="text" formControlName="direccion" class="form-control" id="validationCustom04" required>
+      <div class="invalid-feedback">
+        Please provide a valid city.
+      </div>
+    </div>
+    <div class="col-md-6">
+      <label for="validationCustom05" class="form-label">Telefono</label>
+      <input type="text" formControlName="telefono" class="form-control" id="validationCustom05" required>
+      <div class="invalid-feedback">
+        Please select a valid state.
+      </div>
+    </div>    
+    <div class="col text-end">
+        <button [disabled]="this.form.invalid" class="btn btn-primary" type="submit">
+            <i class="fa fa-plus"></i>
+                Agregar            
+        </button>
+    </div>
+  </form>
+
+<table class="table table-dark table-hover mt-5">
+    <thead>
+        <tr>
+          <th scope="col">Id</th>
+          <th scope="col">Nombre</th>
+          <th scope="col">Apellido</th>
+          <th scope="col">Edad</th>
+          <th scope="col">Direccion</th>
+          <th scope="col">Telefono</th>
+          <th scope="col"></th>
+          <th scope="col"></th> 
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let alumno of listaAlumnos">
+          <th scope="row">{{alumno.id}}</th>
+          <td>{{alumno.nombre}}</td>
+          <td>{{alumno.apellido}}</td>
+          <td>{{alumno.edad}}</td>
+          <td>{{alumno.direccion}}</td>
+          <td>{{alumno.telefono}}</td>
+          <td>
+            <i (click)="editAlumno(alumno)" class="far fa-regular fa-pen-to-square text-primary"></i>
+          </td>
+          <td>
+              <i (click)="deleteAlumno(alumno.id)" class="far fa-solid fa-trash-can text-danger"></i>
+          </td>
+        </tr>        
+      </tbody>
+  </table>
+
+  

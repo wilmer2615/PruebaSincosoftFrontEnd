@@ -1,0 +1,42 @@
+<h1>{{alumno}}</h1>
+<hr>
+<form [formGroup]="form" class="row g-3 needs-validation" novalidate>
+    <div class="row text-center mt-5">
+        <div class="mb-3 col-md-4">
+            <label for="disabledSelect">Periodo</label>
+            <select id="profesor" class="form-select" formControlName="anio">
+                <option selected>Seleccionar</option>
+                <option *ngFor="let anio of listAnios" [value]="anio.descripcion">{{anio.descripcion}}</option>
+            </select>
+        </div>
+    </div>
+</form>
+<table class="table table-dark table-hover mt-3">
+    <thead>
+        <tr>
+            <th scope="col" class="text-center">Materia</th>
+            <th scope="col" class="text-center">Calificacion</th>
+            <th scope="col">
+                <input class="far " type="checkbox" [checked]="isCheckedAll()"
+                    (change)="checkAll($any($event.target).checked)">
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let materia of listMaterias">
+            <td>{{materia.nombre}}</td>
+            <td class="text-center">
+                <input type="number" step="0.1" min="0" max="5" [(ngModel)]="materia.calificacion">
+            </td>
+            <td>
+                <input class="far" type="checkbox" [(ngModel)]="materia.checked">
+            </td>
+        </tr>
+    </tbody>
+</table>
+<div class="col text-end">
+    <button class="btn btn-primary mt-3"  [routerLink]="['/calificacion']">Regresar</button>
+    <button class="btn btn-primary mt-3 ms-5" [disabled]="this.form.invalid" [routerLink]="['/calificacion']"
+        (click)="save()">Guardar</button>
+
+</div>
